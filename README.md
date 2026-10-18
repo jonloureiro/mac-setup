@@ -1,6 +1,6 @@
 # mac-setup
 
-Declarative macOS setup managed with [mise](https://mise.jdx.dev/bootstrap.html).
+Personal macOS configuration and handpicked apps, declaratively managed with [mise](https://mise.jdx.dev/bootstrap.html). It intentionally uses very few apps and settings to keep the system as simple as possible.
 
 ## Usage
 
