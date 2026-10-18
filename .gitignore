@@ -2,6 +2,8 @@
 archive/
 TODO.md
 mise.local.toml
+wallpapers/*
+!wallpapers/.gitkeep
 .env
 .env.*
 !.env.example

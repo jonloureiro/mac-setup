@@ -1,14 +1,16 @@
 #!/usr/bin/env sh
 set -eu
 
-# Generate solid sRGB wallpaper and apply dark icons + folder color from RGB args.
+# Dark icons + folder tint from RGB. Wallpaper from wallpapers/, or solid RGB if empty.
 RGB="${1:-247 201 160}"
-WALLPAPER_DIR="$HOME/.local/share/wallpapers"
-WALLPAPER="$WALLPAPER_DIR/solid.png"
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd -P)"
+REPO_WALLPAPER_DIR="$(cd "$SCRIPT_DIR/.." && pwd -P)/wallpapers"
+FALLBACK_DIR="$HOME/.local/share/wallpapers"
+SOLID_WALLPAPER="$FALLBACK_DIR/solid.png"
 
-mkdir -p "$WALLPAPER_DIR"
+mkdir -p "$FALLBACK_DIR"
 
-python3 - "$RGB" "$WALLPAPER" <<'PY'
+python3 - "$RGB" "$SOLID_WALLPAPER" <<'PY'
 import ctypes, struct, subprocess, sys, zlib
 
 r, g, b = [int(x) for x in sys.argv[1].replace(",", " ").split()[:3]]
@@ -64,7 +66,34 @@ except Exception:
     pass
 PY
 
-sips --matchTo "/System/Library/ColorSync/Profiles/sRGB Profile.icc" "$WALLPAPER" >/dev/null 2>&1 || true
+sips --matchTo "/System/Library/ColorSync/Profiles/sRGB Profile.icc" "$SOLID_WALLPAPER" >/dev/null 2>&1 || true
 
-osascript -e "tell application \"System Events\" to tell every desktop to set picture to \"$WALLPAPER\""
+SELECTED_IMAGE=""
+if [ -d "$REPO_WALLPAPER_DIR" ]; then
+  CURRENT_PIC="$(osascript -e 'tell application "System Events" to get picture of desktop 1' 2>/dev/null || true)"
+  case "$CURRENT_PIC" in
+    "$REPO_WALLPAPER_DIR"/*)
+      [ -f "$CURRENT_PIC" ] && SELECTED_IMAGE="$CURRENT_PIC"
+      ;;
+  esac
+  if [ -z "$SELECTED_IMAGE" ]; then
+    for img in "$REPO_WALLPAPER_DIR"/*; do
+      case "$img" in
+        *.jpg|*.JPG|*.jpeg|*.JPEG|*.png|*.PNG|*.heic|*.HEIC|*.webp|*.WEBP)
+          SELECTED_IMAGE="$img"
+          break
+          ;;
+      esac
+    done
+  fi
+fi
+
+if [ -n "$SELECTED_IMAGE" ]; then
+  osascript \
+    -e "tell application \"System Events\" to tell every desktop to set pictures folder to \"$REPO_WALLPAPER_DIR\"" \
+    -e "tell application \"System Events\" to tell every desktop to set picture to \"$SELECTED_IMAGE\""
+else
+  osascript -e "tell application \"System Events\" to tell every desktop to set picture to \"$SOLID_WALLPAPER\""
+fi
+
 killall Dock Finder || true
