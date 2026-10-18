@@ -1,0 +1,111 @@
+min_version = "2026.10.11"
+
+[settings]
+legacy_version_file = false
+
+# Personal variables (override in mise.local.toml)
+[vars]
+hostname = "mufasa"
+git_name = "Jonathan Loureiro"
+git_email = "me@jonloureiro.dev"
+docker_host = "ssh://core@rafiki"
+wallpaper_rgb = "247 201 160"
+
+[env]
+DOCKER_HOST = "{{ vars.docker_host }}"
+
+[bootstrap.mise_shell_activate]
+zsh = true
+fish = "auto"
+
+[tools]
+node = "24.12.0"
+uv = "0.12.3"
+"aqua:cli/cli" = "2.100.0"
+"aqua:jqlang/jq" = "1.8.2"
+"aqua:BurntSushi/ripgrep" = "15.2.0"
+"aqua:docker/cli" = "29.8.0"
+"github:docker/compose" = "5.5.1"
+"github:mongodb-js/mongosh" = "2.9.2"
+
+[bootstrap.packages]
+"brew:fish" = "latest"
+"brew:herdr" = "latest"
+"brew:libpq" = "latest"
+"brew-cask:puremac" = "latest"
+"brew-cask:zed" = "latest"
+"brew-cask:chatgpt" = "latest"
+"brew-cask:antigravity" = "latest"
+"brew-cask:lunar" = "latest"
+"brew-cask:ghostty" = "latest"
+"brew-cask:tailscale-app" = "latest"
+"brew-cask:zen" = "latest"
+"brew-cask:helium-browser" = "latest"
+"brew-cask:onedrive" = "latest"
+"brew-cask:snapzy" = "latest"
+"brew-cask:easydict" = "latest"
+"brew-cask:loop" = "latest"
+"brew-cask:font-space-mono-nerd-font" = "latest"
+"brew-cask:font-zed-mono-nerd-font" = "latest"
+
+[dotfiles]
+"~/.hushlogin" = { content = "" }
+"~/Library/Application Support/com.mitchellh.ghostty/config" = { source = "dotfiles/ghostty/config", mode = "symlink" }
+"~/.config/ghostty/config" = { source = "dotfiles/ghostty/config", mode = "symlink" }
+"~/.config/shell/zsh-fish.zsh" = { source = "dotfiles/shell/zsh-fish.zsh", mode = "symlink" }
+"~/.config/fish/conf.d/env.fish" = { source = "dotfiles/fish/conf.d/env.fish", mode = "symlink" }
+"~/.config/git/config" = { source = "dotfiles/git/config.tmpl", mode = "template" }
+"~/.config/git/ignore" = { source = "dotfiles/git/ignore", mode = "symlink" }
+"~/.config/uv/uv.toml" = { source = "dotfiles/uv/uv.toml", mode = "symlink" }
+"~/.zshenv/path" = { block = "export PATH=\"$HOME/.local/bin:/opt/homebrew/opt/libpq/bin:/opt/homebrew/bin:/opt/homebrew/sbin:$PATH\"" }
+"~/.zshrc/exec-fish" = { block = "source \"$HOME/.config/shell/zsh-fish.zsh\"" }
+
+[bootstrap.macos.dock]
+autohide = true
+show_recents = true
+tilesize = 56
+magnification = false
+largesize = 56
+apps = [
+  "/Applications/Ghostty.app",
+  "/Applications/Zen.app",
+  "/Applications/Helium.app",
+  "/Applications/ChatGPT.app",
+  "/Applications/Antigravity.app",
+  "/Applications/Zed.app",
+  "/Applications/Keka.app",
+]
+
+[bootstrap.macos.finder]
+show_pathbar = true
+preferred_view_style = "list"
+
+[bootstrap.macos.keyboard]
+key_repeat = 2
+initial_key_repeat = 15
+press_and_hold = false
+
+[bootstrap.macos.trackpad]
+tap_to_click = true
+
+[bootstrap.macos.defaults]
+# Dark mode, dark icons, standard scroll, and Ctrl+Cmd window drag
+"NSGlobalDomain" = { AppleInterfaceStyle = "Dark", AppleIconAppearanceTheme = "RegularDark", "com.apple.swipescrolldirection" = false, NSWindowShouldDragOnGesture = true }
+
+# Disable click wallpaper to show desktop and hide widgets
+"com.apple.WindowManager" = { EnableStandardClickToShowDesktop = false, StandardHideWidgets = true, StageManagerHideWidgets = true }
+
+# Disable all hot corners (1 = disabled) and remove Dock folder stacks
+"com.apple.dock" = { persistent-others = [], wvous-tl-corner = 1, wvous-tr-corner = 1, wvous-bl-corner = 1, wvous-br-corner = 1, wvous-tl-modifier = 0, wvous-tr-modifier = 0, wvous-bl-modifier = 0, wvous-br-modifier = 0 }
+
+# Empty Trash items after 30 days
+"com.apple.finder" = { FXRemoveOldTrashItems = true }
+
+# Two-finger right click
+"com.apple.AppleMultitouchTrackpad" = { TrackpadRightClick = true }
+"com.apple.driver.AppleBluetoothMultitouch.trackpad" = { TrackpadRightClick = true }
+
+[bootstrap.hooks]
+post-packages = "~/.config/mise/scripts/install-keka.sh"
+post-defaults = "~/.config/mise/scripts/apply-desktop.sh '{{ vars.wallpaper_rgb }}'"
+final = "~/.config/mise/scripts/set-hostname.sh '{{ vars.hostname }}'"

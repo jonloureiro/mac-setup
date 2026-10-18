@@ -1,0 +1,14 @@
+font-family = SpaceMono Nerd Font
+font-feature = -calt, -liga, -dlig
+
+background-opacity = 0.78
+background-blur = 20
+macos-titlebar-style = hidden
+
+window-padding-x = 12
+window-padding-y = 12
+
+macos-option-as-alt = "left"
+
+keybind = alt+left=unbind
+keybind = alt+right=unbind

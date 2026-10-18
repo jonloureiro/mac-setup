@@ -1,0 +1,2 @@
+# Always use uv-managed Python versions.
+python-preference = "only-managed"
