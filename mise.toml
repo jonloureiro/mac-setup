@@ -62,7 +62,7 @@ uv = "0.12.3"
 
 [bootstrap.macos.dock]
 autohide = true
-show_recents = true
+show_recents = false
 tilesize = 56
 magnification = false
 largesize = 56
