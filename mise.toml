@@ -106,6 +106,6 @@ tap_to_click = true
 "com.apple.driver.AppleBluetoothMultitouch.trackpad" = { TrackpadRightClick = true }
 
 [bootstrap.hooks]
-post-packages = "~/.config/mise/scripts/install-keka.sh"
+post-packages = "~/.config/mise/scripts/post-packages.sh"
 post-defaults = "~/.config/mise/scripts/apply-desktop.sh '{{ vars.wallpaper_rgb }}'"
 final = "~/.config/mise/scripts/set-hostname.sh '{{ vars.hostname }}'"
