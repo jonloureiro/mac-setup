@@ -1,0 +1,24 @@
+min_version = "2026.10.11"
+
+[tools]
+gh = "latest"
+uv = "latest"
+codex = "latest"
+"github:fish-shell/fish-shell" = { version = "latest", os = ["linux"], matching = "linux-" }
+
+[dotfiles]
+"~/.bash_profile/local-bin" = { line = 'export PATH="$HOME/.local/bin:$HOME/.local/share/mise/shims:$PATH"', position = "prepend" }
+"~/.bashrc/local-bin" = { line = 'export PATH="$HOME/.local/bin:$HOME/.local/share/mise/shims:$PATH"', position = "prepend" }
+"~/.config/fish/config.fish/local-bin" = { line = 'fish_add_path --global "$HOME/.local/bin" "$HOME/.local/share/mise/shims"', position = "prepend" }
+"~/.bashrc/fish" = { block = '''
+if [[ $- == *i* && -t 0 && -t 1 &&
+      -z ${BASH_EXECUTION_STRING:-} && ${MAC_SETUP_NO_FISH:-0} != 1 ]] &&
+    fish_path="$(mise -C "$HOME" which fish 2>/dev/null)"; then
+    export SHELL="$fish_path"
+    exec "$fish_path"
+fi
+''' }
+
+[bootstrap.mise_shell_activate]
+bash = true
+fish = "auto"
