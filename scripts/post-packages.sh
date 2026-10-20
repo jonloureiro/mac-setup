@@ -18,6 +18,7 @@ if ! /opt/homebrew/bin/herdr plugin list | grep -q "shibayu36.equalize-panes"; t
   /opt/homebrew/bin/herdr plugin install -y shibayu36/herdr-equalize-panes
 fi
 
-# Enable 'docker compose' subcommand by linking compose plugin
+# Enable Docker CLI plugins (compose and buildx)
 mkdir -p "$HOME/.docker/cli-plugins"
 ln -sfn /opt/homebrew/lib/docker/cli-plugins/docker-compose "$HOME/.docker/cli-plugins/docker-compose"
+ln -sfn /opt/homebrew/opt/docker-buildx/bin/docker-buildx "$HOME/.docker/cli-plugins/docker-buildx"
