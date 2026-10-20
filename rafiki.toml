@@ -10,6 +10,7 @@ codex = "latest"
 "~/.bash_profile/local-bin" = { line = 'export PATH="$HOME/.local/bin:$HOME/.local/share/mise/shims:$PATH"', position = "prepend" }
 "~/.bashrc/local-bin" = { line = 'export PATH="$HOME/.local/bin:$HOME/.local/share/mise/shims:$PATH"', position = "prepend" }
 "~/.config/fish/config.fish/local-bin" = { line = 'fish_add_path --global "$HOME/.local/bin" "$HOME/.local/share/mise/shims"', position = "prepend" }
+"~/.config/fish/config.fish/greeting" = { line = "set -g fish_greeting" }
 "~/.bashrc/fish" = { block = '''
 if [[ $- == *i* && -t 0 && -t 1 &&
       -z ${BASH_EXECUTION_STRING:-} && ${MAC_SETUP_NO_FISH:-0} != 1 ]] &&
