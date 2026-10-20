@@ -35,6 +35,7 @@ fish = "auto"
 "brew-cask:slack" = "latest"
 "brew-cask:zed" = "latest"
 "brew-cask:chatgpt" = "latest"
+"brew-cask:codex" = "latest"
 "brew-cask:antigravity" = "latest"
 "brew-cask:lunar" = "latest"
 "brew-cask:ghostty" = "latest"
@@ -57,6 +58,8 @@ fish = "auto"
 "~/.config/ghostty/config" = { source = "dotfiles/ghostty/config", mode = "symlink" }
 "~/.config/shell/zsh-fish.zsh" = { source = "dotfiles/shell/zsh-fish.zsh", mode = "symlink" }
 "~/.config/fish/conf.d/env.fish" = { source = "dotfiles/fish/conf.d/env.fish", mode = "symlink" }
+"~/.config/fish/functions/ports.fish" = { source = "dotfiles/fish/functions/ports.fish", mode = "symlink" }
+"~/.config/fish/functions/rafiki-forward.fish" = { source = "dotfiles/fish/functions/rafiki-forward.fish", mode = "symlink" }
 "~/.config/git/config" = { source = "dotfiles/git/config.tmpl", mode = "template" }
 "~/.config/git/ignore" = { source = "dotfiles/git/ignore", mode = "symlink" }
 "~/.config/uv/uv.toml" = { source = "dotfiles/uv/uv.toml", mode = "symlink" }

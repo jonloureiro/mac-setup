@@ -26,4 +26,5 @@ auth.json
 *.tar*
 node_modules/
 .venv/
+__pycache__/
 work/

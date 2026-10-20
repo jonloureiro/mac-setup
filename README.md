@@ -28,3 +28,14 @@ Personal macOS configuration and handpicked apps, declaratively managed with [mi
    ln -sfn "$PWD/scripts" ~/.config/mise/scripts
    ~/.local/bin/mise bootstrap
    ```
+
+## SSH port forwarding
+
+Forward local ports to `core@rafiki` from Fish. Every command shows the current status.
+
+```fish
+rafiki-forward                 # Show status
+rafiki-forward 8080 8000        # Open missing ports in the background
+rafiki-forward stop 8080 8001   # Stop specific ports
+rafiki-forward stop all        # Stop all managed tunnels
+```
