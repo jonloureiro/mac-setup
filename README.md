@@ -2,7 +2,7 @@
 
 Personal machine setup managed with [mise](https://mise.jdx.dev/bootstrap.html).
 `mise.toml` configures macOS; `rafiki.toml` configures Linux with GitHub CLI,
-uv, Codex CLI, and Fish at `latest`.
+uv, Codex CLI, Herdr, and Fish at `latest`.
 
 mise installs `brew:` packages directly; Homebrew itself is not required.
 
@@ -36,6 +36,7 @@ curl -fsSL https://mise.run | sh
 mkdir -p ~/workspace ~/.config/mise
 git clone git@github.com:jonloureiro/mac-setup.git ~/workspace/mac-setup
 ln -sfn "$HOME/workspace/mac-setup/rafiki.toml" ~/.config/mise/config.toml
+ln -sfn "$HOME/workspace/mac-setup/scripts" ~/.config/mise/scripts
 ~/.local/bin/mise -C "$HOME" bootstrap --upgrade
 exec bash -l
 ```

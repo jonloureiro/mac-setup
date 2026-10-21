@@ -6,6 +6,8 @@ node = "24"
 gh = "latest"
 uv = "latest"
 codex = "latest"
+herdr = "latest"
+perl = "latest"
 "github:fish-shell/fish-shell" = { version = "latest", os = ["linux"], matching = "linux-" }
 
 [dotfiles]
@@ -25,3 +27,6 @@ fi
 [bootstrap.mise_shell_activate]
 bash = true
 fish = "auto"
+
+[bootstrap.hooks]
+post-tools = "~/.config/mise/scripts/rafiki-post-tools.sh"
