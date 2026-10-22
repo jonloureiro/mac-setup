@@ -1,0 +1,59 @@
+# Owner-operated Git with a reviewed local merge-update exception.
+# Prefix rules cannot inspect merge state, arbitrary option positions, or paths.
+# Prompt rules route those cases to the reviewer and the policy in ../AGENTS.md.
+
+prefix_rule(
+    pattern = ["git", "push"],
+    decision = "forbidden",
+    justification = "The human owner performs pushes; prepare the changes and publication text.",
+    match = ["git push origin main"],
+    not_match = ["git status", "git diff"],
+)
+
+prefix_rule(
+    pattern = ["git", "commit", "--no-verify"],
+    decision = "forbidden",
+    justification = "Do not bypass repository verification; report the failing check to the owner.",
+    match = ["git commit --no-verify -m fix"],
+    not_match = ["git diff --cached"],
+)
+
+prefix_rule(
+    pattern = ["git", "commit", "-n"],
+    decision = "forbidden",
+    justification = "Do not bypass repository verification; report the failing check to the owner.",
+    match = ["git commit -n -m fix"],
+    not_match = ["git log -n 1"],
+)
+
+prefix_rule(
+    pattern = ["gh", "pr", "checkout"],
+    decision = "forbidden",
+    justification = "The human owner changes branches; inspect the PR with gh pr view or gh pr diff.",
+    match = ["gh pr checkout 123"],
+    not_match = ["gh pr view 123", "gh pr diff 123"],
+)
+
+prefix_rule(
+    pattern = ["git", ["add", "commit", "merge", "fetch"]],
+    decision = "prompt",
+    justification = "Allow only the explicitly requested local merge update, its staging and default-message merge commit; other Git writes remain owner-operated. Never bypass hooks.",
+    match = ["git merge --no-edit origin/main", "git add -- src/file.ts", "git commit --no-edit", "git commit -m fix --no-verify", "git fetch origin main"],
+    not_match = ["git status", "git diff --cached", "git log -n 1"],
+)
+
+prefix_rule(
+    pattern = ["git", ["-C", "-c", "--git-dir", "--work-tree", "--no-pager", "--paginate", "--bare", "--literal-pathspecs", "--no-optional-locks"]],
+    decision = "prompt",
+    justification = "Inspect the actual Git subcommand after global options; reads may proceed, writes require the authorized local merge exception, and pushes or verification bypasses remain prohibited.",
+    match = ["git -C /tmp/repo push origin main", "git -c core.hooksPath=/dev/null commit -m fix", "git --no-pager diff", "git -C /tmp/repo commit --no-edit"],
+    not_match = ["git status", "git diff", "git log"],
+)
+
+prefix_rule(
+    pattern = ["gh", ["-R", "--repo"]],
+    decision = "prompt",
+    justification = "Inspect the GitHub action after repository options; reads may proceed, while publication and checkout remain owner-operated.",
+    match = ["gh -R example/project pr checkout 123", "gh --repo example/project pr view 123"],
+    not_match = ["gh pr view 123", "gh pr diff 123"],
+)

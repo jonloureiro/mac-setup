@@ -1,0 +1,4 @@
+# Owner clicks open externally; agent browser behavior is defined in AGENTS.md.
+[desktop]
+open-link-in-target-preference = "external-browser"
+open-local-url-in-target-preference = "external-browser"

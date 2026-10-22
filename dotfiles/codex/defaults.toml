@@ -1,0 +1,3 @@
+# Initial defaults only: mise fills missing keys and preserves local model choices.
+model = "gpt-6.1-sol"
+model_reasoning_effort = "xhigh"

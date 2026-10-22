@@ -1,4 +1,4 @@
-min_version = "2026.10.11"
+min_version = "2026.10.15"
 
 [tools]
 node = "24"
@@ -11,6 +11,16 @@ perl = "latest"
 "github:fish-shell/fish-shell" = { version = "latest", os = ["linux"], matching = "linux-" }
 
 [dotfiles]
+"~/.codex/config.toml/defaults" = { source = "dotfiles/codex/defaults.toml", merge = "missing" }
+"~/.codex/config.toml/desktop" = { source = "dotfiles/codex/desktop.toml", merge = true }
+"~/.codex/config.toml/permissions" = { source = "dotfiles/codex/permissions.toml", merge = true }
+"~/.codex/AGENTS.md" = { source = "dotfiles/codex/AGENTS.md", mode = "symlink" }
+"~/.codex/rules/owner-git.rules" = { source = "dotfiles/codex/rules/owner-git.rules", mode = "symlink" }
+"~/.agents/skills/engineering-craft" = { source = "dotfiles/agents/skills/engineering-craft", mode = "symlink" }
+"~/.agents/skills/implement-design" = { source = "dotfiles/agents/skills/implement-design", mode = "symlink" }
+"~/.agents/skills/owner-publication" = { source = "dotfiles/agents/skills/owner-publication", mode = "symlink" }
+"~/.agents/skills/review-pr" = { source = "dotfiles/agents/skills/review-pr", mode = "symlink" }
+"~/.agents/skills/source-verification" = { source = "dotfiles/agents/skills/source-verification", mode = "symlink" }
 "~/.bash_profile/local-bin" = { line = 'export PATH="$HOME/.local/bin:$HOME/.local/share/mise/shims:$PATH"', position = "prepend" }
 "~/.bashrc/local-bin" = { line = 'export PATH="$HOME/.local/bin:$HOME/.local/share/mise/shims:$PATH"', position = "prepend" }
 "~/.config/fish/config.fish/local-bin" = { line = 'fish_add_path --global "$HOME/.local/bin" "$HOME/.local/share/mise/shims"', position = "prepend" }
