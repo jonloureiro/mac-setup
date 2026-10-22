@@ -10,6 +10,11 @@ git_name = "Jonathan Loureiro"
 git_email = "me@jonloureiro.dev"
 docker_host = "ssh://core@rafiki"
 wallpaper_rgb = "247 201 160"
+display_sleep_battery_minutes = 3
+display_sleep_power_minutes = 3
+screen_lock_delay = "immediate"
+# Boolean mise vars must be strings; a bare false disables the variable.
+show_user_name_and_photo = "false"
 
 [env]
 DOCKER_HOST = "{{ vars.docker_host }}"
@@ -112,5 +117,8 @@ tap_to_click = true
 
 [bootstrap.hooks]
 post-packages = "~/.config/mise/scripts/post-packages.sh"
-post-defaults = "~/.config/mise/scripts/apply-desktop.sh '{{ vars.wallpaper_rgb }}'"
+post-defaults = [
+  "~/.config/mise/scripts/apply-desktop.sh '{{ vars.wallpaper_rgb }}'",
+  "~/.config/mise/scripts/apply-lock-screen.sh '{{ vars.display_sleep_battery_minutes }}' '{{ vars.display_sleep_power_minutes }}' '{{ vars.screen_lock_delay }}' '{{ vars.show_user_name_and_photo }}'",
+]
 final = "~/.config/mise/scripts/set-hostname.sh '{{ vars.hostname }}'"
