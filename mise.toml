@@ -18,6 +18,7 @@ show_user_name_and_photo = "false"
 
 [env]
 DOCKER_HOST = "{{ vars.docker_host }}"
+FIVETRAN_SCOPE = "read"
 
 [bootstrap.mise_shell_activate]
 zsh = true
@@ -77,6 +78,9 @@ fish = "auto"
 "~/.config/git/ignore" = { source = "dotfiles/git/ignore", mode = "symlink" }
 "~/.config/uv/uv.toml" = { source = "dotfiles/uv/uv.toml", mode = "symlink" }
 "~/.zshenv/path" = { block = "export PATH=\"$HOME/.local/bin:/opt/homebrew/opt/libpq/bin:/opt/homebrew/bin:/opt/homebrew/sbin:$PATH\"" }
+# Non-interactive shells do not load mise's environment through activation.
+"~/.zshenv/fivetran-scope" = { block = "export FIVETRAN_SCOPE=read" }
+"~/.config/fish/config.fish/fivetran-scope" = { block = "set -gx FIVETRAN_SCOPE read" }
 "~/.zshrc/exec-fish" = { block = "source \"$HOME/.config/shell/zsh-fish.zsh\"" }
 
 [bootstrap.macos.dock]
