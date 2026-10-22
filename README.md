@@ -48,6 +48,16 @@ directory at `~/.config/mise/dotfiles` before updating.
 
 ## Codex
 
+Both platforms enable local Codex memories through `dotfiles/codex/memories.toml`.
+After updating the checkout, apply only the memory settings with:
+
+```sh
+~/.local/bin/mise -C "$HOME" dotfiles apply '~/.codex/config.toml/memories' --yes
+```
+
+The global `AGENTS.md` and managed skills are symlinks, so prompt edits are
+reflected immediately in the installed files without rerunning bootstrap.
+
 After setup or plugin changes, audit integration approvals from this checkout:
 
 ```sh

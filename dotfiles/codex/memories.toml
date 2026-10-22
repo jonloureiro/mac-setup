@@ -1,0 +1,7 @@
+# Enable local memory generation and use on both macOS and Linux.
+[features]
+memories = true
+
+[memories]
+generate_memories = true
+use_memories = true

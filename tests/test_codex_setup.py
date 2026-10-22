@@ -81,7 +81,7 @@ class ManifestTests(unittest.TestCase):
     def test_platforms_share_existing_sources_with_disjoint_merge_ownership(self):
         entries = shared_entries("mise.toml")
         self.assertEqual(entries, shared_entries("rafiki.toml"))
-        self.assertEqual(len(entries), 10)
+        self.assertEqual(len(entries), 11)
         owned = set()
 
         def leaves(data, path=()):
@@ -139,6 +139,12 @@ command = "/bin/false"
 TOKEN = "synthetic-private-value"
 [desktop]
 appearanceDarkCodeThemeId = "tokyo-night"
+[features]
+memories = false
+[memories]
+generate_memories = false
+use_memories = false
+min_rollout_idle_hours = 12
 ''')
         personal = self.home / ".agents/skills/personal/SKILL.md"
         personal.parent.mkdir(parents=True)
@@ -153,6 +159,10 @@ appearanceDarkCodeThemeId = "tokyo-night"
         self.assertEqual(data["mcp_servers"]["example"]["env"]["TOKEN"], "synthetic-private-value")
         self.assertEqual(data["desktop"]["appearanceDarkCodeThemeId"], "tokyo-night")
         self.assertEqual(data["desktop"]["open-local-url-in-target-preference"], "external-browser")
+        self.assertTrue(data["features"]["memories"])
+        self.assertTrue(data["memories"]["generate_memories"])
+        self.assertTrue(data["memories"]["use_memories"])
+        self.assertEqual(data["memories"]["min_rollout_idle_hours"], 12)
         self.assertIn(b"# Keep the app's choices.", first)
         self.assertEqual(personal.read_text(), "personal skill\n")
         self.assertEqual(self.bootstrap().returncode, 0)
@@ -165,6 +175,9 @@ appearanceDarkCodeThemeId = "tokyo-night"
         data = load(self.config)
         self.assertEqual(data["model"], "gpt-6.1-sol")
         self.assertEqual(data["model_reasoning_effort"], "xhigh")
+        self.assertTrue(data["features"]["memories"])
+        self.assertTrue(data["memories"]["generate_memories"])
+        self.assertTrue(data["memories"]["use_memories"])
         self.assertNotIn("mcp_servers", data)
         self.assertFalse(self.config.is_symlink())
         if CODEX:

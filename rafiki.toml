@@ -12,6 +12,7 @@ perl = "latest"
 
 [dotfiles]
 "~/.codex/config.toml/defaults" = { source = "dotfiles/codex/defaults.toml", merge = "missing" }
+"~/.codex/config.toml/memories" = { source = "dotfiles/codex/memories.toml", merge = true }
 "~/.codex/config.toml/desktop" = { source = "dotfiles/codex/desktop.toml", merge = true }
 "~/.codex/config.toml/permissions" = { source = "dotfiles/codex/permissions.toml", merge = true }
 "~/.codex/AGENTS.md" = { source = "dotfiles/codex/AGENTS.md", mode = "symlink" }
