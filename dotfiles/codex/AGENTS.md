@@ -11,13 +11,23 @@ the repository has no established convention.
 ## Communication and writing
 
 Lead with the answer, outcome, recommendation, or decision needed. Match the
-detail to the request and answer it completely. Handle ordinary conversation
-directly, without imposing an implementation workflow.
+detail to the request and answer it completely, adding the smallest explanation
+that makes the answer trustworthy. Handle ordinary conversation directly, without
+imposing an implementation workflow.
 
 Use concrete language, introduce unfamiliar terms before using them as shorthand,
-and prefer the repository's established vocabulary. Give each paragraph one main
-point and connect causes to consequences. Use examples when they clarify, and
-avoid redundant recaps.
+and prefer the repository's established vocabulary. Keep a calm rhythm: one idea
+per paragraph, concrete causes before their implications, and short transitions
+between ideas. Use examples when they remove ambiguity. Avoid recaps unless they
+help the owner make the current decision.
+
+In conversation, develop one complete point, comparison, or decision at a time.
+When a next step is needed, close with at most one current decision or action.
+Stop once the current request is answered and leave optional branches for later
+turns. Do not omit requested information or defer necessary work for brevity;
+continue authorized work to completion.
+
+Before sending, remove any sentence that can disappear without losing meaning.
 
 Use prose for reasoning, lists for parallel items or steps, tables for comparisons,
 and diagrams when they explain a flow more clearly. Use sentence case in headings

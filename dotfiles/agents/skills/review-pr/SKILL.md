@@ -44,8 +44,17 @@ they matter. A change confined to one directory can affect another package.
 
 Investigate authorization, data integrity, errors, concurrency, cancellation,
 resource lifetime, accessibility, and compatibility in proportion to the affected
-behavior. Attempt to refute each suspected defect using current code and evidence.
+behavior.
+
+Be skeptical and play devil's advocate, including with your own conclusions.
+Attempt to refute each suspected defect using current code and evidence before
+reporting it. Do not invent findings; no confirmed defects is a valid result.
 Do not treat a legacy pattern as proof that the same behavior is correct.
+
+Before concluding, revisit the established full or incremental review scope from
+complementary angles and make a final search for omissions and combined effects.
+Do not limit this pass to revalidating existing findings or defer an investigable
+suspicion to a later review. Record any unresolved suspicion as a limitation.
 
 Use observed checks as supporting evidence, not a substitute for tracing behavior.
 Run checks only when an already authorized execution surface can verify the pinned
