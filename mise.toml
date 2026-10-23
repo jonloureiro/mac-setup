@@ -43,6 +43,7 @@ fish = "auto"
 "brew-cask:chatgpt" = "latest"
 "brew-cask:codex" = "latest"
 "brew-cask:antigravity" = "latest"
+"brew-cask:dbeaver-community" = "latest"
 "brew-cask:lunar" = "latest"
 "brew-cask:ghostty" = "latest"
 "brew-cask:tailscale-app" = "latest"
@@ -97,6 +98,7 @@ apps = [
   "/Applications/ChatGPT.app",
   "/Applications/Antigravity.app",
   "/Applications/Zed.app",
+  "/Applications/DBeaver.app",
   "/Applications/Keka.app",
 ]
 
