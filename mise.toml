@@ -52,11 +52,17 @@ fish = "auto"
 "brew-cask:microsoft-word" = "latest"
 "brew-cask:microsoft-excel" = "latest"
 "brew-cask:microsoft-powerpoint" = "latest"
-"brew-cask:snapzy" = "latest"
 "brew-cask:easydict" = "latest"
 "brew-cask:loop" = "latest"
 "brew-cask:font-space-mono-nerd-font" = "latest"
 "brew-cask:font-zed-mono-nerd-font" = "latest"
+
+# No Homebrew cask yet; update the version and checksum together.
+[bootstrap.packages."macos-app:neatshot"]
+version = "1.2.1"
+url = "https://neatshot.app/download/NeatShot-{{version}}.dmg"
+sha256 = "53aadf4e72cbd73eb3183a578e09836d61c53a861e19a08d1fb0407c547e79a8"
+artifact = "NeatShot.app"
 
 [dotfiles]
 "~/.codex/config.toml/defaults" = { source = "dotfiles/codex/defaults.toml", merge = "missing" }
