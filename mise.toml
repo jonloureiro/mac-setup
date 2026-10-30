@@ -111,6 +111,17 @@ apps = [
   "/Applications/Keka.app",
 ]
 
+# Apps opened when signing into the macOS desktop.
+[bootstrap.macos.login_items]
+exclusive = true
+apps = [
+  "/Applications/Tailscale.app",
+  "/Applications/Loop.app",
+  "/Applications/Easydict.app",
+  "/Applications/MonitorControl.app",
+  "/Applications/NeatShot.app",
+]
+
 [bootstrap.macos.finder]
 show_pathbar = true
 preferred_view_style = "list"
