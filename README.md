@@ -66,6 +66,12 @@ uv run --script scripts/codex-integrations.py --check
 
 Review proposed changes before rerunning with `--apply`.
 
+## Slack
+
+Import the [Everforest theme](themes/slack/README.md) by pasting the contents of
+[`themes/slack/everforest.txt`](themes/slack/everforest.txt) into Slack's custom
+theme importer.
+
 ## SSH port forwarding
 
 Use `rafiki-forward` in Fish on the Mac to manage tunnels to `core@rafiki`.
