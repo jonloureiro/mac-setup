@@ -25,6 +25,7 @@ zsh = true
 fish = "auto"
 
 [bootstrap.packages]
+"brew:awscli" = "latest"
 "brew:fish" = "latest"
 "brew:herdr" = "latest"
 "brew:libpq" = "latest"

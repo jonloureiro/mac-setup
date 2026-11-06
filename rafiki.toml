@@ -1,6 +1,7 @@
 min_version = "2026.10.15"
 
 [tools]
+aws-cli = "latest"
 node = "24"
 "npm:vercel" = "latest"
 gh = "latest"
